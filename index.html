@@ -3,63 +3,45 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GitHub Markdown Viewer</title>
+  <title>Display GitHub Markdown in HTMLs</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <style>
     body {
       font-family: Arial, sans-serif;
       padding: 20px;
     }
-    .markdown-link {
-      margin-bottom: 10px;
-      display: block;
-    }
-    .markdown-content {
+    #markdown-container {
       border: 1px solid #ccc;
       padding: 10px;
-      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
   <h1>GitHub Markdown Viewer</h1>
 
-  <div id="markdown-container"></div>
+  <div id="markdown-container">
+    <!-- Rendered Markdown content will be inserted here -->
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
   <script>
-    // Markdown files to render
-    const markdownFiles = [
-      { name: 'File 1', path: 'https://github.com/FullStackDevEnthusiasts/Authentication/blob/bbf895e040895be41919c46d5d731d7cbb2f2e04/Basic%20Authentication.md' },
-      { name: 'File 2', path: 'https://github.com/FullStackDevEnthusiasts/Authentication/blob/bbf895e040895be41919c46d5d731d7cbb2f2e04/Basic%20Authentication.md' }
-      // Add more Markdown files as needed
-    ];
-
+    const markdownUrl = 'https://raw.githubusercontent.com/FullStackDevEnthusiasts/Authentication/bbf895e040895be41919c46d5d731d7cbb2f2e04/Basic%20Authentication.md';
     const markdownContainer = document.getElementById('markdown-container');
-    const md = window.markdownit();
 
-    markdownFiles.forEach(file => {
-      fetch(file.path)
-        .then(response => response.text())
-        .then(markdown => {
-          const html = md.render(markdown);
-          markdownContainer.innerHTML += `
-            <div class="markdown-link">
-              <a href="#" onclick="renderMarkdown('${file.path}')">${file.name}</a>
-            </div>
-            <div id="markdown-${file.path}" class="markdown-content" style="display:none;">
-              ${html}
-            </div>
-          `;
-        })
-        .catch(error => {
-          console.error(`Error fetching Markdown file ${file.path}:`, error);
-        });
-    });
-
-    function renderMarkdown(path) {
-      const markdownDiv = document.getElementById(`markdown-${path}`);
-      markdownDiv.style.display = 'block';
-    }
+    fetch(markdownUrl)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`Network response was not ok: ${response.statusText}`);
+        }
+        return response.text();
+      })
+      .then(markdown => {
+        const html = marked(markdown);
+        markdownContainer.innerHTML = html;
+      })
+      .catch(error => {
+        console.error('Error fetching Markdown:', error);
+        markdownContainer.innerHTML = 'Error fetching Markdown content.';
+      });
   </script>
 </body>
 </html>
