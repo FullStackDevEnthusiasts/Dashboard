@@ -3,59 +3,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My GitHub Repositories</title>
+  <title>GitHub Markdown Viewer</title>
   <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #f0f0f0;
-      margin: 0;
+      font-family: Arial, sans-serif;
       padding: 20px;
     }
-    .container {
-      max-width: 600px;
-      margin: auto;
-      background-color: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      padding: 20px;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 20px;
-    }
-    .repo-link {
-      display: block;
-      background-color: #007bff;
-      color: #fff;
-      text-decoration: none;
-      padding: 10px;
+    .markdown-link {
       margin-bottom: 10px;
-      border-radius: 5px;
-      text-align: center;
-      transition: background-color 0.3s ease;
+      display: block;
     }
-    .repo-link:hover {
-      background-color: #0056b3;
-    }
-    .repo-link:active {
-      background-color: #004380;
-    }
-    .repo-link:focus {
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
+    .markdown-content {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 20px;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>My GitHub Repositories</h1>
-    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/CSharp-and-OOPs" target="_blank">C# & OOPs</a>
-    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/SQL-Server/blob/main/SQLServer.md" target="_blank">SQL</a>
-    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/Angular" target="_blank">Angular</a>
-    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/Azure" target="_blank">Azure</a>
+  <h1>GitHub Markdown Viewer</h1>
 
-    <!-- Add more links as needed -->
-  </div>
+  <div id="markdown-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/markdown-it/dist/markdown-it.min.js"></script>
+  <script>
+    // Markdown files to render
+    const markdownFiles = [
+      { name: 'File 1', path: 'https://github.com/FullStackDevEnthusiasts/Authentication/blob/main/Azure%20AD.md' },
+      { name: 'File 2', path: 'https://github.com/FullStackDevEnthusiasts/Authentication/blob/main/Basic%20Authentication.md' }
+      // Add more Markdown files as needed
+    ];
+
+    const markdownContainer = document.getElementById('markdown-container');
+    const md = window.markdownit();
+
+    markdownFiles.forEach(file => {
+      fetch(file.path)
+        .then(response => response.text())
+        .then(markdown => {
+          const html = md.render(markdown);
+          markdownContainer.innerHTML += `
+            <div class="markdown-link">
+              <a href="#" onclick="renderMarkdown('${file.path}')">${file.name}</a>
+            </div>
+            <div id="markdown-${file.path}" class="markdown-content" style="display:none;">
+              ${html}
+            </div>
+          `;
+        })
+        .catch(error => {
+          console.error(`Error fetching Markdown file ${file.path}:`, error);
+        });
+    });
+
+    function renderMarkdown(path) {
+      const markdownDiv = document.getElementById(`markdown-${path}`);
+      markdownDiv.style.display = 'block';
+    }
+  </script>
 </body>
 </html>
