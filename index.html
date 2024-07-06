@@ -3,59 +3,59 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Render GitHub Markdown Files</title>
+  <title>My GitHub Repositories</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f0f0;
+      margin: 0;
       padding: 20px;
     }
-    .repo-container {
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
       margin-bottom: 20px;
-      border: 1px solid #ccc;
+    }
+    .repo-link {
+      display: block;
+      background-color: #007bff;
+      color: #fff;
+      text-decoration: none;
       padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      text-align: center;
+      transition: background-color 0.3s ease;
     }
-    .repo-name {
-      font-weight: bold;
+    .repo-link:hover {
+      background-color: #0056b3;
     }
-    .markdown-content {
-      margin-top: 10px;
+    .repo-link:active {
+      background-color: #004380;
+    }
+    .repo-link:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.3);
     }
   </style>
 </head>
 <body>
-  <h1>GitHub Markdown File Viewer</h1>
+  <div class="container">
+    <h1>My GitHub Repositories</h1>
+    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/CSharp-and-OOPs" target="_blank">C# & OOPs</a>
+    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/SQL-Server/blob/main/SQLServer.md" target="_blank">SQL</a>
+    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/Angular" target="_blank">Angular</a>
+    <a class="repo-link" href="https://github.com/FullStackDevEnthusiasts/Azure" target="_blank">Azure</a>
 
-  <div id="repos-list"></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script>
-    async function fetchAndRenderMarkdown(repoName, filePath) {
-      try {
-        const response = await fetch(`https://raw.githubusercontent.com/${repoName}/main/${filePath}`);
-        const markdownText = await response.text();
-        const markdownContainer = document.createElement('div');
-        markdownContainer.classList.add('markdown-content');
-        markdownContainer.innerHTML = marked(markdownText);
-
-        const repoContainer = document.createElement('div');
-        repoContainer.classList.add('repo-container');
-        const repoNameElement = document.createElement('div');
-        repoNameElement.classList.add('repo-name');
-        repoNameElement.textContent = `${repoName} - ${filePath}`; // Display repository and file path
-
-        repoContainer.appendChild(repoNameElement);
-        repoContainer.appendChild(markdownContainer);
-
-        document.getElementById('repos-list').appendChild(repoContainer);
-      } catch (error) {
-        console.error(`Error fetching Markdown from ${repoName}/${filePath}:`, error);
-      }
-    }
-
-    // Example usage
-    fetchAndRenderMarkdown('FullStackDevEnthusiasts/Authentication', 'Azure AD.md');
-    fetchAndRenderMarkdown('FullStackDevEnthusiasts/Authentication', 'Basic Authentication.md');
-    // Add more fetchAndRenderMarkdown calls as needed for other repositories and files
-  </script>
+    <!-- Add more links as needed -->
+  </div>
 </body>
 </html>
