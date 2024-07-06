@@ -1,0 +1,34 @@
+# markdown-to-html.yml
+
+name: Generate HTML from Markdown
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - '**/*.md' # Trigger on changes to Markdown files
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Pandoc
+        run: sudo apt-get install pandoc
+
+      - name: Convert Markdown to HTML
+        run: |
+          for file in $(find . -name "*.md"); do
+            pandoc "$file" -o "${file%.md}.html"
+          done
+
+      - name: Commit and push changes
+        run: |
+          git config --local user.email "ganeshprabhuchatgpt@github.com"
+          git config --local user.name "GitHub Action"
+          git add ./*.html
+          git commit -m "Generate HTML from Markdown"
+          git push
