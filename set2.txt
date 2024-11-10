@@ -1,0 +1,86 @@
+Here’s Set 2 of interview questions with answers based on your skills and experience.
+
+Set 2: Interview Questions and Answers
+
+	1.	What is Angular’s lifecycle, and how do you use lifecycle hooks in your applications?
+	•	Angular components have a series of lifecycle hooks (e.g., ngOnInit, ngOnChanges, ngOnDestroy).
+	•	Use ngOnInit for initialization logic, ngOnChanges for input property changes, and ngOnDestroy for cleanup.
+	•	Helps manage component state and resources, like unsubscribing from observables to prevent memory leaks.
+	2.	How do you ensure code quality and readability in your Angular projects?
+	•	Follow Angular style guide and enforce linting rules.
+	•	Use meaningful naming conventions and organize code into modules and services.
+	•	Write reusable components, services, and maintain modularity for scalability.
+	3.	Describe the purpose and usage of HttpClient in Angular.
+	•	HttpClient is Angular’s API for making HTTP requests, replacing the deprecated Http module.
+	•	Supports features like interceptors, error handling, and request/response transformation.
+	•	Allows integration with observables, enabling reactive programming.
+	4.	How does ASP.NET Core’s middleware pipeline work, and why is it important?
+	•	Middleware is a series of components handling HTTP requests and responses sequentially.
+	•	Each middleware can perform actions like authentication, logging, and routing before passing to the next.
+	•	Enables a modular and reusable approach to handling cross-cutting concerns.
+	5.	What is a stored procedure, and when would you use one in SQL Server?
+	•	A stored procedure is a precompiled set of SQL statements that can be executed as a single unit.
+	•	Useful for complex data processing, repetitive tasks, and improving performance by reducing network traffic.
+	•	Enhances security as permissions can be granted on stored procedures rather than on tables.
+	6.	Explain how Dapper works in .NET applications and its advantages over Entity Framework.
+	•	Dapper is a micro-ORM that maps C# objects to database tables, allowing custom SQL.
+	•	Faster than Entity Framework due to its lightweight nature, with minimal abstraction.
+	•	Ideal for performance-critical applications needing fine control over SQL queries.
+	7.	How would you design a microservices architecture for a new project?
+	•	Identify core functionalities and split them into distinct services (e.g., User Service, Order Service).
+	•	Use APIs for communication, with asynchronous messaging for loosely coupled interactions.
+	•	Implement centralized logging, monitoring, and an API gateway for managing requests.
+	8.	What’s the difference between TypeScript and JavaScript, and why do you prefer TypeScript for Angular?
+	•	TypeScript is a statically typed superset of JavaScript, providing features like classes, interfaces, and type safety.
+	•	Enhances readability and maintainability by catching errors at compile time.
+	•	TypeScript’s strong typing improves development efficiency in large-scale applications.
+	9.	How do you handle caching in Angular applications?
+	•	Use HttpClient’s CacheInterceptor to cache HTTP requests and reduce server load.
+	•	Implement local storage or session storage for caching data locally.
+	•	Control cache expiration and refresh policies to maintain data consistency.
+	10.	What are the main principles of Domain-Driven Design (DDD), and how have you applied them?
+	•	Focuses on aligning software with business domains and terms.
+	•	Key concepts: entities, value objects, aggregates, repositories, and services.
+	•	Applied DDD in complex domains where business rules dictate application behavior, ensuring software matches business needs.
+	11.	Explain the Azure App Service and its key benefits.
+	•	Azure App Service is a platform for hosting web applications, REST APIs, and mobile backends.
+	•	Offers automatic scaling, high availability, and integration with CI/CD.
+	•	Supports multiple programming languages and provides built-in monitoring and security.
+	12.	What are some of the challenges you faced while using SSRS, and how did you solve them?
+	•	Faced challenges with complex report layouts and slow-loading reports.
+	•	Used caching and data-driven subscriptions to optimize report load times.
+	•	Simplified report complexity by dividing reports into subreports and optimizing data sources.
+	13.	How do you ensure scalability and performance in CI/CD pipelines on Azure DevOps?
+	•	Optimize build and release steps by using parallel jobs and caching dependencies.
+	•	Use YAML-based pipelines for flexibility, allowing easier maintenance and version control.
+	•	Regularly monitor and analyze pipeline performance, adjusting tasks as needed to improve efficiency.
+	14.	What’s the difference between eager loading and lazy loading in Entity Framework, and when would you use each?
+	•	Eager loading retrieves related data with the main query, reducing database round trips.
+	•	Lazy loading delays the retrieval of related data until explicitly accessed, reducing memory usage initially.
+	•	Use eager loading when data is needed immediately; lazy loading when data is accessed conditionally.
+	15.	How does Azure Active Directory B2C improve authentication in applications?
+	•	Azure AD B2C allows easy integration of identity management, supporting various login methods (social accounts, emails).
+	•	Ensures secure user authentication with features like multifactor authentication (MFA) and user consent.
+	•	Offers customizable user flows, enhancing user experience and security.
+	16.	Explain the async and await keywords in C# and when to use them.
+	•	async enables asynchronous methods, while await pauses execution until a task completes.
+	•	Helps prevent blocking of the main thread, improving application responsiveness.
+	•	Useful for I/O-bound tasks like file reading or HTTP calls without freezing the UI.
+	17.	How does ngIf differ from *ngFor in Angular?
+	•	ngIf conditionally displays an element based on a true/false expression.
+	•	*ngFor iterates over a list of items and generates an element for each item.
+	•	Both are structural directives, but ngIf is for conditional rendering, while *ngFor is for iterating lists.
+	18.	What are DTOs (Data Transfer Objects), and why are they useful in a microservices architecture?
+	•	DTOs are simple objects used to transfer data between layers or services without exposing internal models.
+	•	Reduce data transfer overhead by including only necessary fields.
+	•	Ensure separation of concerns and provide a security layer by not exposing domain entities.
+	19.	How do you handle concurrent database access in SQL Server?
+	•	Use locking mechanisms like row locks or transaction isolation levels to manage concurrency.
+	•	Apply optimistic concurrency using timestamps or versioning for high-read scenarios.
+	•	Consider using NOLOCK hints carefully for read-only queries to avoid blocking but monitor for dirty reads.
+	20.	Describe a challenging project requirement you faced in your personal projects and how you resolved it.
+	•	Challenge: Implementing real-time validation in the Ngp-Rich-Text-Editor project for better user experience.
+	•	Resolved by using debounced observables in Angular and WebSocket to update changes instantly.
+	•	Improved performance by minimizing unnecessary API calls and using local state management.
+
+Let me know when you’re ready for Set 3!
